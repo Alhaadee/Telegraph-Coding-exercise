@@ -32,7 +32,7 @@ public class WeatherService {
 
   }
 
-  public Duration calculateDaylightHours(String city) {
+  private Duration calculateDaylightHours(String city) {
     CityInfo cityInfo = weatherRepo.getByCity(city);
 
 
