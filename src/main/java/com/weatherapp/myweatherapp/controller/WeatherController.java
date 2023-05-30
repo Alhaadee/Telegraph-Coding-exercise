@@ -34,7 +34,15 @@ public class WeatherController {
     }
   }
 
-
+  @GetMapping("/checkRain")
+  public ResponseEntity<String> checkRain(@RequestParam String city1, @RequestParam String city2) {
+    try {
+      String rainingCity = weatherService.checkForRain(city1, city2);
+      return ResponseEntity.ok(rainingCity);
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+    }
+  }
 
 
   // TODO: given two city names, compare the length of the daylight hours and return the city with the longest day

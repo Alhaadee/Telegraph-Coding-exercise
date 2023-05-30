@@ -44,5 +44,23 @@ public class WeatherService {
   }
 
 
+  public String checkForRain(String city1, String city2) {
+    CityInfo cityInfo1 = weatherRepo.getByCity(city1);
+    CityInfo cityInfo2 = weatherRepo.getByCity(city2);
 
+
+
+    boolean isRainingInCity1 = cityInfo1.getCurrentConditions().getConditions().toLowerCase().contains("rain");
+    boolean isRainingInCity2 = cityInfo2.getCurrentConditions().getConditions().toLowerCase().contains("rain");
+
+    if (isRainingInCity1 && isRainingInCity2) {
+      return "It's raining in both cities";
+    } else if (isRainingInCity1) {
+      return city1;
+    } else if (isRainingInCity2) {
+      return city2;
+    } else {
+      return "It's not raining in either city";
+    }
+  }
 }
